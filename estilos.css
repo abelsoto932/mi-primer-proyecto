@@ -1,8 +1,57 @@
+/* 1. Configuramos el fondo y la letra de toda la pantalla */
 body {
-    background-color: #e0f2fe; /* Esto es un hermoso color azul cielo pastel moderno */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0fdf4; /* Un verde menta pastel muy relajante y moderno */
+    font-family: 'Poppins', sans-serif; /* ¡Activamos la letra elegante de Google! */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
 }
 
+/* 2. Diseñamos la tarjeta de presentación flotante */
+.tarjeta-presentacion {
+    background-color: #ffffff; /* Fondo blanco impecable */
+    padding: 40px;
+    max-width: 500px;
+    border-radius: 16px; /* Bordes redondeados elegantes */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); /* Sombra suave para que parezca flotar */
+    text-align: center;
+}
+
+/* 3. Estilizados de títulos y textos */
 h1 {
-    color: #0369a1; /* Un color azul oscuro elegante para tu título principal */
+    color: #166534; /* Verde oscuro profesional */
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+p {
+    color: #4b5563; /* Gris suave muy legible */
+    line-height: 1.6;
+}
+
+/* 4. Estilo de la sección de logros */
+.lista-logros {
+    margin-top: 30px;
+    background-color: #f0fdf4;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.lista-logros h3 {
+    color: #166534;
+    margin-top: 0;
+}
+
+ul {
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+li {
+    color: #374151;
+    margin-bottom: 10px;
 }
