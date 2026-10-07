@@ -1,5 +1,6 @@
 /* 1. CONFIGURACIÓN GENERAL */
 body {
+    flex-direction: column;
     background-color: #0f172a; /* Fondo oscuro ultramoderno tipo Hacker Elegante */
     color: #f8fafc; /* Texto blanco suave para que no canse la vista */
     font-family: 'Poppins', sans-serif;
@@ -13,6 +14,12 @@ body {
 .portafolio-contenedor {
     max-width: 850px;
     width: 100%;
+.portafolio-contenedor {
+    max-width: 700px; /* Reducimos el ancho para que sea más estético y compacto */
+    width: 100%;
+    margin: 0 auto; /* ¡El truco de oro! Centra toda la estructura en la pantalla */
+}
+
 }
 
 /* 2. DISEÑO DEL PERFIL (SECCIÓN SUPERIOR) */
@@ -23,6 +30,10 @@ body {
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+flex-direction: column;
+align-items: center;
+
 }
 
 .perfil-seccion h1 {
@@ -104,4 +115,20 @@ body {
 .tarjeta-proyecto:hover {
     border-color: #38bdf8;
     transform: scale(1.02); /* Crece un 2% al pasar el mouse */
+}
+/* 5. DISEÑO DE LA FOTO DE PERFIL */
+.foto-perfil {
+    width: 120px; /* Tamaño perfecto para portafolios */
+    height: 120px;
+    border-radius: 50%; /* ¡El truco mágico para hacerla completamente circular! */
+    object-fit: cover; /* Evita que la foto se estire o se deforme */
+    border: 3px solid #38bdf8; /* Un hermoso borde azul brillante */
+    margin-bottom: 15px;
+}
+/* Efecto de foco en el formulario */
+.formulario-contacto input:focus, 
+.formulario-contacto textarea:focus {
+    outline: none;
+    border-color: #38bdf8; /* Borde azul brillante */
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
 }
