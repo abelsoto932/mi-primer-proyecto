@@ -1,51 +1,76 @@
-/* 1. CONFIGURACIÓN GENERAL */
+/* 1. CONFIGURACIÓN GENERAL DEL LIENZO */
 body {
-    flex-direction: column;
     background-color: #0f172a; /* Fondo oscuro ultramoderno tipo Hacker Elegante */
     color: #f8fafc; /* Texto blanco suave para que no canse la vista */
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 40px 20px;
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Centra todo el bloque en el monitor */
+    min-height: 100vh;
 }
 
-/* Contenedor principal de la web */
+/* Contenedor principal unificado */
 .portafolio-contenedor {
-    max-width: 850px;
+    max-width: 750px; /* Ancho máximo ideal para portafolios compactos */
     width: 100%;
-.portafolio-contenedor {
-    max-width: 700px; /* Reducimos el ancho para que sea más estético y compacto */
-    width: 100%;
-    margin: 0 auto; /* ¡El truco de oro! Centra toda la estructura en la pantalla */
+    display: flex;
+    flex-direction: column; /* Cambiado a columna para evitar el estiramiento horizontal */
+    gap: 35px; /* Espacio vertical ordenado entre cada tarjeta */
 }
 
-}
-
-/* 2. DISEÑO DEL PERFIL (SECCIÓN SUPERIOR) */
-.perfil-seccion {
-    text-align: center;
-    margin-bottom: 50px;
+/* 2. ESTILO DE TARJETA ESTÁNDAR (Para unificar las 3 secciones) */
+.perfil-seccion,
+.proyectos-seccion,
+.contacto-seccion {
     background: #1e293b; /* Caja gris azulada oscura */
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    display: flex;
-flex-direction: column;
-align-items: center;
+    box-sizing: border-box;
+}
 
+/* 3. DISEÑO ESPECÍFICO DEL PERFIL */
+.perfil-seccion {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra la foto, los botones y los textos perfectamente */
+    text-align: center;
+}
+
+/* Foto de perfil circular */
+.foto-contenedor {
+    margin-bottom: 20px;
+}
+
+.foto-perfil {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%; /* La hace completamente circular */
+    object-fit: cover; /* Evita que la imagen se deforme o estire */
+    border: 3px solid #38bdf8; /* Borde azul brillante elegante */
+    display: block;
 }
 
 .perfil-seccion h1 {
-    font-size: 36px;
+    font-size: 32px;
     color: #38bdf8; /* Tu nombre en azul brillante */
     margin: 10px 0;
 }
 
 .perfil-seccion h2 {
     font-size: 18px;
-    color: #94a3b8; /* Subtítulo gris claro */
+    color: #94a3b8;
     font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.perfil-seccion p {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 550px;
+    margin: 0;
 }
 
 /* Botones de Redes Sociales */
@@ -53,7 +78,8 @@ align-items: center;
     margin-top: 25px;
     display: flex;
     justify-content: center;
-    gap: 15px; /* Espacio entre botones */
+    gap: 15px;
+    width: 100%;
 }
 
 .btn-red {
@@ -62,41 +88,59 @@ align-items: center;
     color: white;
     text-decoration: none;
     font-weight: 600;
-    transition: all 0.3s ease; /* Efecto suave de movimiento */
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
 }
 
 .linkedin { background-color: #0a66c2; }
-.github { background-color: #333; border: 1px solid #475569; }
+.github { background-color: #24292e; border: 1px solid #475569; }
 
-/* 🌟 EFECTO HOVER: Los botones reaccionan al pasar el mouse por encima */
+/* Efecto Hover interactivo en redes */
 .btn-red:hover {
-    transform: translateY(-3px); /* El botón sube ligeramente */
+    transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(56, 189, 248, 0.3);
 }
 
-/* 3. SECCIÓN DE PROYECTOS (LA CUADRÍCULA) */
-.proyectos-seccion h3 {
+/* 4. SECCIÓN DE PROYECTOS (LA CUADRÍCULA) */
+.proyectos-seccion h3, .contacto-seccion h3 {
     font-size: 22px;
     color: #f8fafc;
     border-bottom: 2px solid #334155;
     padding-bottom: 10px;
+    margin-top: 0;
     margin-bottom: 25px;
 }
 
-/* Aquí activamos la cuadrícula profesional */
 .proyectos-cuadrilla {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Columnas inteligentes */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas fluidas y equilibradas */
     gap: 20px;
 }
 
-/* Tarjetas individuales de proyectos */
+/* Tarjetas internas de cada proyecto */
 .tarjeta-proyecto {
-    background-color: #1e293b;
+    background-color: #0f172a; /* Fondo más oscuro para que resalte dentro del contenedor */
     padding: 25px;
     border-radius: 15px;
     border: 1px solid #334155;
     transition: all 0.3s ease;
+}
+
+/* Estilo para los iconos internos de tus proyectos */
+.proyecto-icono {
+    font-size: 22px; /* Tamaño del icono */
+    color: #38bdf8; /* Color azul brillante */
+    background-color: rgba(56, 189, 248, 0.1); /* Fondo sutil azulado */
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
 .tarjeta-proyecto h4 {
@@ -109,26 +153,98 @@ align-items: center;
     color: #94a3b8;
     font-size: 14px;
     line-height: 1.6;
+    margin: 0;
 }
 
-/* Efecto interactivo en las tarjetas de proyectos */
 .tarjeta-proyecto:hover {
     border-color: #38bdf8;
-    transform: scale(1.02); /* Crece un 2% al pasar el mouse */
+    transform: translateY(-5px); /* Movimiento hacia arriba en hover */
 }
-/* 5. DISEÑO DE LA FOTO DE PERFIL */
-.foto-perfil {
-    width: 120px; /* Tamaño perfecto para portafolios */
-    height: 120px;
-    border-radius: 50%; /* ¡El truco mágico para hacerla completamente circular! */
-    object-fit: cover; /* Evita que la foto se estire o se deforme */
-    border: 3px solid #38bdf8; /* Un hermoso borde azul brillante */
-    margin-bottom: 15px;
+
+/* 5. SECCIÓN DEL FORMULARIO DE CONTACTO */
+.contacto-subtitulo {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-top: -15px;
+    margin-bottom: 25px;
 }
-/* Efecto de foco en el formulario */
+
+.formulario-contacto {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.grupo-input {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.grupo-input label {
+    color: #38bdf8;
+    font-size: 14px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.formulario-contacto input, 
+.formulario-contacto textarea {
+    width: 100%;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #334155;
+    background-color: #0f172a;
+    color: #f8fafc;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
 .formulario-contacto input:focus, 
 .formulario-contacto textarea:focus {
     outline: none;
-    border-color: #38bdf8; /* Borde azul brillante */
+    border-color: #38bdf8;
     box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
+}
+
+/* Botón de Enviar elegante */
+.btn-enviar {
+    width: 100%;
+    padding: 16px;
+    background-color: #38bdf8;
+    color: #0f172a;
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-enviar:hover {
+    background-color: #0284c7;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(56, 189, 248, 0.3);
+}
+
+/* 6. DISEÑO RESPONSIVO (Ajustes para celulares) */
+@media (max-width: 500px) {
+    body {
+        padding: 20px 10px;
+    }
+    
+    .perfil-seccion, .proyectos-seccion, .contacto-seccion {
+        padding: 25px 20px;
+    }
+    
+    .redes-sociales {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn-red {
+        justify-content: center;
+    }
 }
