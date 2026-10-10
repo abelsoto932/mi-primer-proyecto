@@ -1,328 +1,499 @@
-/* 1. CONFIGURACIÓN GENERAL DEL LIENZO */
+/* ==========================================================================
+   1. VARIABLES DE DISEÑO & CONFIGURACIÓN GENERAL
+   ========================================================================== */
+:root {
+    --bg-main: #0b0f19;       /* Fondo ultra oscuro profundo */
+    --bg-card: #131c2e;       /* Fondo de tarjetas corporativas */
+    --bg-input: #0b0f19;      /* Fondo de los inputs */
+    --primary: #38bdf8;       /* Azul cian brillante premium */
+    --primary-glow: rgba(56, 189, 248, 0.15);
+    --text-main: #f1f5f9;     /* Blanco suave de alta lectura */
+    --text-muted: #94a3b8;    /* Gris azulado elegante para subtítulos */
+    --border-color: #22314d;  /* Bordes limpios y sutiles */
+    --font-stack: 'Inter', sans-serif;
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    background-color: #0f172a; /* Fondo oscuro ultramoderno tipo Hacker Elegante */
-    color: #f8fafc; /* Texto blanco suave para que no canse la vista */
-    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: var(--font-stack);
     margin: 0;
-    padding: 40px 20px;
-    display: flex;
-    justify-content: center; /* Centra todo el bloque en el monitor */
+    padding: 0;
     min-height: 100vh;
-}
-
-/* Contenedor principal unificado */
-.portafolio-contenedor {
-    max-width: 750px; /* Ancho máximo ideal para portafolios compactos */
-    width: 100%;
-    display: flex;
-    flex-direction: column; /* Cambiado a columna para evitar el estiramiento horizontal */
-    gap: 35px; /* Espacio vertical ordenado entre cada tarjeta */
-}
-
-/* 2. ESTILO DE TARJETA ESTÁNDAR (Unificamos las 4 secciones ahora) */
-.perfil-seccion,
-.skills-seccion,
-.proyectos-seccion,
-.contacto-seccion {
-    background: #1e293b; /* Caja gris azulada oscura */
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    box-sizing: border-box;
-}
-
-/* 3. DISEÑO ESPECÍFICO DEL PERFIL */
-.perfil-seccion {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra la foto, los botones y los textos perfectamente */
-    text-align: center;
-}
-
-/* Foto de perfil circular */
-.foto-contenedor {
-    margin-bottom: 20px;
-}
-
-.foto-perfil {
-    width: 130px;
-    height: 130px;
-    border-radius: 50%; /* La hace completamente circular */
-    object-fit: cover; /* Evita que la imagen se deforme o estire */
-    border: 3px solid #38bdf8; /* Borde azul brillante elegante */
-    display: block;
-}
-
-.perfil-seccion h1 {
-    font-size: 32px;
-    color: #38bdf8; /* Tu nombre en azul brillante */
-    margin: 10px 0;
-}
-
-.perfil-seccion h2 {
-    font-size: 18px;
-    color: #94a3b8;
-    font-weight: 400;
-    margin-bottom: 15px;
-}
-
-.perfil-seccion p {
-    color: #94a3b8;
-    font-size: 14px;
-    line-height: 1.6;
-    max-width: 550px;
-    margin: 0;
-}
-
-/* Botones de Redes Sociales */
-.redes-sociales {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    width: 100%;
-}
-
-.btn-red {
-    padding: 12px 28px;
-    border-radius: 10px;
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 15px;
-    display: inline-flex;
     align-items: center;
-    gap: 8px;
-    transition: all 0.3s ease;
+    overflow-x: hidden; /* 🚀 REGLA CLAVE: Oculta y elimina la barra deslizadora horizontal */
 }
 
-.linkedin { background-color: #0a66c2; }
-.github { background-color: #24292e; border: 1px solid #475569; }
-
-/* Efecto Hover interactivo en redes */
-.btn-red:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(56, 189, 248, 0.3);
+/* ==========================================================================
+   2. NAVBAR MINIMALISTA PREMIUM
+   ========================================================================== */
+.barra-navegacion {
+    position: fixed;
+    top: 0;
+    width: 100vw; /* Cambiado a ancho de ventana visual */
+    max-width: 100%; /* Evita que supere el marco del viewport */
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box; /* Mantiene controlados los paddings internos */
+    z-index: 1000;
+    background: rgba(11, 15, 25, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
 }
 
-/* 4. SECCIÓN DE PROYECTOS (LA CUADRÍCULA) */
-.proyectos-seccion h3, .contacto-seccion h3 {
+.nav-logo {
     font-size: 22px;
-    color: #f8fafc;
-    border-bottom: 2px solid #334155;
-    padding-bottom: 10px;
-    margin-top: 0;
-    margin-bottom: 25px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text-main);
 }
 
-.proyectos-cuadrilla {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas fluidas y equilibradas */
-    gap: 20px;
+.nav-logo span {
+    color: var(--primary);
 }
 
-/* Tarjetas internas de cada proyecto */
-.tarjeta-proyecto {
-    background-color: #0f172a; /* Fondo más oscuro para que resalte dentro del contenedor */
-    padding: 25px;
-    border-radius: 15px;
-    border: 1px solid #334155;
-    transition: all 0.3s ease;
-}
-
-/* Estilo para los iconos internos de tus proyectos */
-.proyecto-icono {
-    font-size: 22px; /* Tamaño del icono */
-    color: #38bdf8; /* Color azul brillante */
-    background-color: rgba(56, 189, 248, 0.1); /* Fondo sutil azulado */
-    width: 50px;
-    height: 50px;
+.nav-links {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    margin-bottom: 15px;
+    gap: 30px;
 }
 
-.tarjeta-proyecto h4 {
-    color: #38bdf8;
-    margin: 10px 0;
-    font-size: 18px;
-}
-
-.tarjeta-proyecto p {
-    color: #94a3b8;
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
     font-size: 14px;
-    line-height: 1.6;
-    margin: 0;
+    font-weight: 500;
+    transition: var(--transition-smooth);
 }
 
-.tarjeta-proyecto:hover {
-    border-color: #38bdf8;
-    transform: translateY(-5px); /* Movimiento hacia arriba en hover */
+.nav-links a:hover {
+    color: var(--primary);
 }
 
-/* 5. SECCIÓN DEL FORMULARIO DE CONTACTO */
-.contacto-subtitulo {
-    color: #94a3b8;
-    font-size: 14px;
-    margin-top: -15px;
-    margin-bottom: 25px;
-}
-
-.formulario-contacto {
+/* ==========================================================================
+   3. CONTENEDOR PRINCIPAL & COMPONENTES COMUNES
+   ========================================================================== */
+.portafolio-contenedor {
+    max-width: 900px;
+    width: 100%;
+    padding: 120px 24px 60px 24px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 60px;
 }
 
-.grupo-input {
-    display: flex;
-    flex-direction: column;
+.seccion-encabezado {
+    margin-bottom: 35px;
     text-align: left;
 }
 
-.grupo-input label {
-    color: #38bdf8;
-    font-size: 14px;
-    margin-bottom: 8px;
+.seccion-subtitulo {
+    color: var(--primary);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
     font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
 }
 
-.formulario-contacto input, 
-.formulario-contacto textarea {
-    width: 100%;
-    padding: 14px;
-    border-radius: 10px;
-    border: 1px solid #334155;
-    background-color: #0f172a;
-    color: #f8fafc;
-    font-family: 'Poppins', sans-serif;
-    font-size: 15px;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-}
-
-.formulario-contacto input:focus, 
-.formulario-contacto textarea:focus {
-    outline: none;
-    border-color: #38bdf8;
-    box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
-}
-
-/* Botón de Enviar elegante */
-.btn-enviar {
-    width: 100%;
-    padding: 16px;
-    background-color: #38bdf8;
-    color: #0f172a;
-    border: none;
-    border-radius: 10px;
+.seccion-encabezado h3 {
+    font-size: 28px;
     font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    margin: 0;
+    color: var(--text-main);
+    letter-spacing: -0.5px;
 }
 
-.btn-enviar:hover {
-    background-color: #0284c7;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(56, 189, 248, 0.3);
+.linea-decorativa {
+    width: 40px;
+    height: 3px;
+    background: var(--primary);
+    margin-top: 12px;
+    border-radius: 2px;
 }
 
-/* 6. DISEÑO RESPONSIVO (Ajustes para celulares) */
-@media (max-width: 500px) {
-    body {
-        padding: 20px 10px;
-    }
-    
-    .perfil-seccion, .proyectos-seccion, .contacto-seccion {
-        padding: 25px 20px;
-    }
-    
-    .redes-sociales {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .btn-red {
-        justify-content: center;
-    }
-}
-/* 4.5 SECCIÓN DE TECNOLOGÍAS (SKILLS) */
-.skills-seccion h3 {
-    font-size: 22px;
-    color: #f8fafc;
-    border-bottom: 2px solid #334155;
-    padding-bottom: 10px;
-    margin-top: 0;
-    margin-bottom: 25px;
+/* ==========================================================================
+   4. DISEÑO REFINADO DE LA SECCIÓN HERO/PERFIL
+   ========================================================================== */
+.perfil-seccion {
+    background: var(--bg-card);
+    padding: 50px;
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 45px;
+    position: relative;
+    overflow: hidden;
 }
 
-.skills-lista {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Distribución fluida de burbujas */
-    gap: 15px;
+.perfil-seccion::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.08) 0%, transparent 70%);
+    pointer-events: none;
 }
 
-.skill-item {
-    background-color: #0f172a; /* Fondo oscuro igual al de las tarjetas de proyectos */
-    padding: 15px;
-    border-radius: 12px;
-    border: 1px solid #334155;
+.foto-marco {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 15px;
+}
+
+.foto-contenedor {
+    position: relative;
+    border-radius: 50%;
+    padding: 6px;
+    background: linear-gradient(135deg, var(--primary), transparent);
+}
+
+.foto-perfil {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    background: var(--bg-main);
+}
+
+.badge-disponible {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.punto-pulso {
+    width: 7px;
+    height: 7px;
+    background: #10b981;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+    animation: pulso 2s infinite;
+}
+
+@keyframes pulso {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.perfil-info {
+    flex: 1;
+    text-align: left;
+}
+
+.saludo-tag {
+    color: var(--primary);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.perfil-info h1 {
+    font-size: 40px;
+    font-weight: 800;
+    margin: 4px 0 8px 0;
+    letter-spacing: -1px;
+}
+
+.perfil-info h2 {
+    font-size: 20px;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin: 0 0 20px 0;
+}
+
+.perfil-descripcion {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.7;
+    margin: 0 0 25px 0;
+}
+
+.redes-sociales {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-red {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    padding: 10px 22px;
+    border-radius: 12px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
     gap: 10px;
-    transition: all 0.3s ease;
+    transition: var(--transition-smooth);
+}
+
+.btn-red:hover {
+    background: rgba(56, 189, 248, 0.05);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   5. SECCIÓN DE TECNOLOGÍAS (MÉTODOS BRANDING)
+   ========================================================================== */
+.skills-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 20px;
+}
+
+.skill-item {
+    background: var(--bg-card);
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    transition: var(--transition-smooth);
 }
 
 .skill-icono {
-    color: #38bdf8; /* Azul brillante característico */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
 }
 
 .skill-item span {
     font-size: 14px;
     font-weight: 600;
-    color: #94a3b8;
-    transition: color 0.3s ease;
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
 }
 
-/* Efecto hover interactivo para las tecnologías */
-.skill-item:hover {
-    border-color: #38bdf8;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(56, 189, 248, 0.15);
+.html5-hover:hover { border-color: #e34c26; box-shadow: 0 10px 25px rgba(227, 76, 38, 0.1); }
+.html5-hover:hover .skill-icono { color: #e34c26; }
+
+.css3-hover:hover { border-color: #264de4; box-shadow: 0 10px 25px rgba(38, 77, 228, 0.1); }
+.css3-hover:hover .skill-icono { color: #264de4; }
+
+.js-hover:hover { border-color: #f7df1e; box-shadow: 0 10px 25px rgba(247, 223, 30, 0.08); }
+.js-hover:hover .skill-icono { color: #f7df1e; }
+
+.git-hover:hover { border-color: #f05032; box-shadow: 0 10px 25px rgba(240, 80, 50, 0.1); }
+.git-hover:hover .skill-icono { color: #f05032; }
+
+.skill-item:hover span { color: var(--text-main); }
+
+/* ==========================================================================
+   6. SECCIÓN DE PROYECTOS TIPO PORTAFOLIO DE AGENCIA
+   ========================================================================== */
+.proyectos-cuadrilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
 }
 
-.skill-item:hover span {
-    color: #f8fafc; /* El texto se aclara al pasar el mouse */
-}
-/* 7. BOTÓN FLOTANTE DE WHATSAPP COMERCIAL */
-.whatsapp-flotante {
-    position: fixed;
-    bottom: 30px; /* Separación de 30 píxeles desde abajo */
-    right: 30px;  /* Separación de 30 píxeles desde la derecha */
-    background-color: #25d366; /* Verde oficial de WhatsApp */
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%; /* Lo vuelve un círculo perfecto */
+.tarjeta-proyecto {
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 32px; /* Tamaño del icono */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra para que flote visualmente */
-    z-index: 1000; /* Obliga al botón a estar siempre por encima de cualquier tarjeta */
-    text-decoration: none;
-    transition: all 0.3s ease;
+    flex-direction: column;
+    text-align: left;
+    transition: var(--transition-smooth);
 }
 
-/* Efecto Hover interactivo: el botón reacciona de forma moderna */
+.proyecto-cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.proyecto-icono {
+    color: var(--primary);
+    background: rgba(56, 189, 248, 0.06);
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.proyecto-links a {
+    color: var(--text-muted);
+    transition: var(--transition-smooth);
+}
+
+.proyecto-links a:hover { color: var(--primary); }
+
+.tarjeta-proyecto h4 {
+    font-size: 19px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: var(--text-main);
+}
+
+.tarjeta-proyecto p {
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 0 24px 0;
+    flex: 1;
+}
+
+.proyecto-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.proyecto-tags span {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 6px;
+}
+
+.tarjeta-proyecto:hover {
+    border-color: rgba(56, 189, 248, 0.4);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   7. FORMULARIO DE CONTACTO PREMIUM COMPACTO
+   ========================================================================== */
+.contacto-seccion {
+    background: var(--bg-card);
+    padding: 50px;
+    border-radius: 24px;
+    border: 1px solid var(--border-color);
+}
+
+.contacto-seccion .seccion-encabezado { text-align: center; }
+.contacto-seccion .linea-decorativa { margin: 12px auto 0 auto; }
+.contacto-subtitulo { color: var(--text-muted); font-size: 15px; margin-top: 10px; }
+
+.formulario-contacto { display: flex; flex-direction: column; gap: 24px; margin-top: 35px; }
+.fila-inputs { display: flex; gap: 20px; }
+.fila-inputs .grupo-input { flex: 1; }
+.grupo-input { display: flex; flex-direction: column; text-align: left; }
+.grupo-input label { color: var(--text-main); font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+.formulario-contacto input,
+.formulario-contacto textarea {
+width: 100%;
+padding: 16px;
+border-radius: 12px;
+border: 1px solid var(--border-color);
+background-color: var(--bg-input);
+color: var(--text-main);
+font-family: var(--font-stack);
+font-size: 14px;
+box-sizing: border-box;
+transition: var(--transition-smooth);
+}
+.formulario-contacto input:focus,
+.formulario-contacto textarea:focus {
+outline: none;
+border-color: var(--primary);
+box-shadow: 0 0 12px var(--primary-glow);
+}
+.btn-enviar {
+width: 100%;
+padding: 16px;
+background-color: var(--primary);
+color: var(--bg-main);
+border: none;
+border-radius: 12px;
+font-weight: 600;
+font-size: 15px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 10px;
+transition: var(--transition-smooth);
+}
+.btn-enviar:hover {
+background-color: #7dd3fc;
+transform: translateY(-2px);
+box-shadow: 0 6px 20px rgba(56, 189, 248, 0.25);
+}
+/* ==========================================================================
+8. FOOTER CORPORATIVO Y WHATSAPP FLOTANTE
+========================================================================== */
+.footer-principal {
+text-align: center;
+padding: 40px 20px;
+width: 100%;
+border-top: 1px solid var(--border-color);
+margin-top: 40px;
+}
+.footer-principal p { margin: 0; font-size: 14px; color: var(--text-muted); }
+.footer-subtext { font-size: 12px !important; margin-top: 6px !important; opacity: 0.6; }
+.whatsapp-flotante {
+position: fixed;
+bottom: 35px;
+right: 35px;
+background-color: #25d366;
+color: white;
+width: 56px;
+height: 56px;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+z-index: 1100;
+text-decoration: none;
+transition: var(--transition-smooth);
+}
 .whatsapp-flotante:hover {
-    background-color: #128c7e; /* Cambia a un verde más oscuro */
-    transform: scale(1.1) rotate(15deg); /* Crece un 10% y gira levemente */
+transform: scale(1.1) rotate(10deg);
+background-color: #128c7e;
+}
+/* ==========================================================================
+9. MEDIA QUERIES (ADAPTABILIDAD TOTAL AUTOMÁTICA)
+========================================================================== */
+@media (max-width: 768px) {
+.barra-navegacion { padding: 0 20px; }
+.nav-links { display: none; }
+.perfil-seccion { flex-direction: column; padding: 40px 24px; text-align: center; gap: 30px; }
+.perfil-info { text-align: center; }
+.redes-sociales { justify-content: center; }
+.fila-inputs { flex-direction: column; gap: 24px; }
+.contacto-seccion { padding: 40px 24px; }
+}
+@media (max-width: 480px) {
+.portafolio-contenedor { padding-top: 100px; gap: 40px; }
+.perfil-info h1 { font-size: 32px; }
+.whatsapp-flotante { bottom: 20px; right: 20px; }
 }
