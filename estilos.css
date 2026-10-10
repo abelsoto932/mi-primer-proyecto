@@ -301,3 +301,28 @@ body {
 .skill-item:hover span {
     color: #f8fafc; /* El texto se aclara al pasar el mouse */
 }
+/* 7. BOTÓN FLOTANTE DE WHATSAPP COMERCIAL */
+.whatsapp-flotante {
+    position: fixed;
+    bottom: 30px; /* Separación de 30 píxeles desde abajo */
+    right: 30px;  /* Separación de 30 píxeles desde la derecha */
+    background-color: #25d366; /* Verde oficial de WhatsApp */
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%; /* Lo vuelve un círculo perfecto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px; /* Tamaño del icono */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra para que flote visualmente */
+    z-index: 1000; /* Obliga al botón a estar siempre por encima de cualquier tarjeta */
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Efecto Hover interactivo: el botón reacciona de forma moderna */
+.whatsapp-flotante:hover {
+    background-color: #128c7e; /* Cambia a un verde más oscuro */
+    transform: scale(1.1) rotate(15deg); /* Crece un 10% y gira levemente */
+}
